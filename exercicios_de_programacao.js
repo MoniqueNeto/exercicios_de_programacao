@@ -351,29 +351,30 @@ console.log(removerVogais("Cod3r"))
 
 /* 27) Desenvolva uma função que recebe um objeto como parâmetro e retorne um outro objeto que corresponde ao objeto recebido como parâmetro, porém com as posições das chaves e valores invertidas, conforme exemplo a seguir: */
 
-function inverter(objeto){
+function inverter(objeto) {
     const objetoInvertido = {}
-
     Object.entries(objeto).forEach( parChaveValor => {
     const chave = 0,
     valor = 1
-    objetoInvertido[ parChaveValor[valor] ] = parChaveValor[chave]})
+    objetoInvertido[ parChaveValor[valor] ] = parChaveValor[chave]
+    })
     return objetoInvertido
-
-}
+    }
 console.log(inverter({ a: 1, b: 2, c: 3}))
 
 /* 28) Elabore uma função que recebe dois parâmetros: o primeiro é um array de números e o segundo é um número que especifica uma quantidade de dígitos. Essa função deverá retornar somente aqueles números do array que têm a quantidade de dígitos indicada pelo segundo parâmetro.*/
 
 function filtrarPorQuantidadeDeDigitos(numeros, quantidadeDesejada){
-    let resultado = []
-
+    const result =[];
+    
     for(numero of numeros){
-        const quantidadeDeDigitos = String(numero).length
-        if(quantidadeDeDigitos === quantidadeDesejada)
-        resultado.push(numero)
+        const quantidaDeDigitos = String(numero).length;
+
+        if(quantidaDeDigitos === quantidadeDesejada){
+            result.push(numero)
         }
-        return resultado
+    }
+    return result;
 
 }
 console.log(filtrarPorQuantidadeDeDigitos([38, 2, 365, 10, 125, 11], 2))
@@ -381,37 +382,37 @@ console.log(filtrarPorQuantidadeDeDigitos([38, 2, 365, 10, 125, 11], 2))
 /* 29) Crie uma função que recebe um array de números e retorna o segundo maior número presente nesse array. */
 
 function segundoMaior(numeros){
-    let indiceDoMaior = 0
-    let segundoMaior
-    numeros.forEach( (numero, indice) => {
-    if( numero > numeros[indiceDoMaior] )
-    indiceDoMaior = indice
-    })
-    numeros.splice(indiceDoMaior, 1)
-    segundoMaior = numeros[0]
-    numeros.forEach(numero => {
-    if(numero > segundoMaior)
-    segundoMaior = numero
-    })
-    return segundoMaior
+
+    const maiorNumero = Math.max(...numeros)
+    numeros = numeros.filter(numero => numero != maiorNumero)
+    const segundoMaior = Math.max(...numeros)
+    return 'O segundo número maior é: ' + segundoMaior
+  
 
 }
 console.log(segundoMaior([12, 16, 1, 5]))
 
 /* 30) Elabore uma função que recebe um objeto com estudantes e suas notas. As notas de cada estudante estarão num array, conforme exemplo abaixo. Você deverá calcular a média da nota de cada aluno e retornar um objeto com os atributos nome e media, que indica o aluno que teve o melhor desempenho nas notas.*/
 
-    const soma = array => array.reduce((acumulador, atual) => acumulador + atual, 0)
-    const media = array => soma(array) / array.length
-    function recerberMelhorEstudante(estudantes) {
-    const estudantesComMedias = Object.entries(estudantes).map( estudante => {
-    const chave = 0,
-    valor = 1
-    return { nome: estudante[chave], media: media(estudante[valor]) }
+const soma = array => array.reduce((acumulador, atual) => acumulador + atual, 0)
+const media = array => soma(array)/ array.length
+
+function recerberMelhorEstudante(estudantes){
+    const estudantesComMedia = Object.entries(estudantes).map(estudante => {
+        const chave = 0,
+        valor = 1
+
+        return {nome: estudante[chave], media: media(estudante[valor]) }
     })
-    const estudantesOrdenados = estudantesComMedias.sort( (estudanteA, estudanteB) => estudanteB.media - estudanteA.media )
+
+    const estudantesOrdenados = estudantesComMedia.sort( (estudanteA, estudanteB) => estudanteB.media - estudanteA.media)
     const melhorEstudante = estudantesOrdenados[0]
+
     return melhorEstudante
-    }
+    
+}
+
+    
     
     
 
